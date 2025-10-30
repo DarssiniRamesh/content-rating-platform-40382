@@ -1,0 +1,267 @@
+/* Ocean Professional base variables (fallback only) */
+:root{
+  --ocean-primary:#2563EB;
+  --ocean-amber:#F59E0B;
+  --ocean-bg:#f9fafb;
+  --ocean-surface:#ffffff;
+  --ocean-text:#111827;
+  --bg-figma-39393e:#39393e; /* approximate for color_ref: color_39393e */
+}
+
+/* Root screen dimensions from JSON: 8896 x 11916 */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-figma-39393e);
+}
+.screen-root{
+  position: relative;
+  width: 8896px;
+  height: 11916px;
+  background: var(--bg-figma-39393e);
+  color: #FFFFFF; /* default to white text on dark background unless specified by JSON */
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Frame 1685: x:-11276, y:-33574, width:7486, height:1031 relative to frame origin x:-11981,y:-34852
+   Normalize by adding offsets (origin to 0,0):
+   left = 11981-11276 = 705
+   top  = 34852-33574 = 1278
+*/
+.frame-1685{
+  position:absolute;
+  left:705px;
+  top:1278px;
+  width:7486px;
+  height:1031px;
+  /* style_ref style_15 not specified; use surface with subtle border */
+  background: rgba(255,255,255,0.04);
+  border-radius: 24px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06) inset;
+}
+
+/* Alerts (220x220). Left alert: x:-8351? No, for first frame child "Alert" ids show two instances:
+   - Right alert: x:-7037 y:-33439 => normalize left = 11981-7037=4944, top=34852-33439=1413 (inside root)
+   - Left alert: x:-8351 y:-33439 => normalize left = 11981-8351=3630, top = 1413
+   But these coords are absolute to root. We'll position them absolute relative to root to match layout. */
+.alert{
+  position:absolute;
+  width:220px;
+  height:220px;
+  background: linear-gradient(180deg, rgba(245,158,11,0.25), rgba(245,158,11,0.05));
+  border: 2px solid rgba(245,158,11,0.5);
+  border-radius: 32px;
+}
+.alert-left{
+  left:3630px;
+  top:1413px;
+}
+.alert-right{
+  left:4944px;
+  top:1413px;
+}
+
+/* Important text block inside frame:
+   The JSON text box at x:-10895,y:-33405,width:6634,height:675 -> normalize left=11981-10895=1086, top=34852-33405=1447  */
+.important-title{
+  position:absolute;
+  left:1086px;
+  top:1447px;
+  margin:0;
+  font-size: 180px; /* approx based on height segments; typo not provided size, Figma likely large header */
+  line-height: 1;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: 0.2px;
+}
+.important-body{
+  position:absolute;
+  left:1086px;
+  top:1640px; /* below title */
+  margin:0;
+  width: 6634px;
+  max-width: 6634px;
+  font-size: 96px;
+  line-height: 1.35;
+  color: rgba(255,255,255,0.88);
+}
+
+/* Main title: "Índice de prototipos"
+   x:-9325,y:-34183,width:3584,height:469 -> normalize left=11981-9325=2656, top=34852-34183=669 */
+.main-title{
+  position:absolute;
+  left:2656px;
+  top:669px;
+  margin:0;
+  width:3584px;
+  height:469px;
+  font-size: 360px; /* approximated to occupy 469px height with line-height ~1.2 */
+  line-height: 1.2;
+  font-weight: 900;
+  color:#FFFFFF;
+  letter-spacing: 0.2px;
+}
+
+/* Section 1 container (Frame 29389)
+   x:-11360,y:-31894,width:5020,height:2225 -> normalize left=621, top=1958 */
+.section-1{
+  position:absolute;
+  left:621px;
+  top:1958px;
+  width:5020px;
+  height:2225px;
+}
+.section-title{
+  margin:0;
+  color:#FFFFFF;
+  font-weight: 800;
+  font-size: 240px; /* typo_65 large heading */
+  line-height: 1.25;
+}
+.section-1 .section-title{
+  position:absolute;
+  left:0;
+  top:0;
+  width: 7443px; /* JSON width, but our section width is 5020; keep visual alignment within 5020 */
+  max-width: 5020px;
+}
+
+/* Body text for Section 1
+   x:-11360,y:-31234,width:7443,height:1404 -> normalize top=2618 */
+.section-1 .section-body{
+  position:absolute;
+  left:0;
+  top: 2618px - 1958px; /* 660px below section-1 top */
+  width:5020px;
+}
+.section-text{
+  margin:0;
+  font-size: 112px; /* typo_66 body-like large text */
+  line-height: 1.45;
+  color: rgba(255,255,255,0.9);
+}
+
+/* Group 29354: CTA near x:-6340,y:-31028,width:2403,height:917 -> normalize left=5641, top=1824
+   This sits to the right; we'll place absolutely by root coords for exactness. */
+.cta-group.cta-1{
+  position:absolute;
+  left:5641px;
+  top:1824px;
+  width:2403px;
+  height:917px;
+}
+.cta-button{
+  display:inline-block;
+  width:1680px;
+  height:480px;
+  border:none;
+  border-radius:64px;
+  background: var(--ocean-amber);
+  color:#1F2937;
+  font-weight: 800;
+  font-size: 160px; /* typo_67 */
+  line-height: 480px;
+  text-align:center;
+  box-shadow: 0 12px 24px rgba(245,158,11,0.35);
+  cursor:pointer;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+}
+.cta-button:hover{
+  transform: translateY(-6px);
+  filter: brightness(1.05);
+  box-shadow: 0 18px 32px rgba(245,158,11,0.45);
+}
+.cta-helper{
+  margin:0;
+  padding-top: 60px;
+  width: 2403px;
+  font-size: 120px; /* typo_68 */
+  line-height: 1.35;
+  color: rgba(255,255,255,0.8);
+}
+
+/* Divider Line 1: x:-11360,y:-29249,width:7443,height:0 -> normalize left=621, top=5603 */
+.divider{
+  position:absolute;
+  height:0;
+  border:none;
+  border-top: 8px solid rgba(255,255,255,0.2);
+  width: 7443px;
+  left: 621px;
+}
+.divider-1{ top: 5603px; }
+
+/* Section 2: Frame 29394 x:-11360,y:-28829,width:5020,height:2298 -> normalize left=621, top=6023 */
+.section-2{
+  position:absolute;
+  left:621px;
+  top:6023px;
+  width:5020px;
+  height:2298px;
+}
+.section-2 .section-title{
+  position:absolute;
+  left:0;
+  top:0;
+  max-width:5020px;
+}
+.section-2 .section-body{
+  position:absolute;
+  left:0;
+  top: 660px;
+  width:5020px;
+}
+
+/* Group 29355: x:-6340,y:-28223,width:2403,height:917 -> normalize left=5641, top=6629 */
+.cta-group.cta-2{
+  position:absolute;
+  left:5641px;
+  top:6629px;
+  width:2403px;
+  height:917px;
+}
+
+/* Divider Line 2: x:-11360,y:-26111,width:7443 -> normalize top=8741 */
+.divider-2{ top: 8741px; }
+
+/* Section 3: Frame 29387 x:-11360,y:-25691,width:5185,height:2247 -> normalize left=621, top=9161 */
+.section-3{
+  position:absolute;
+  left:621px;
+  top:9161px;
+  width:5185px;
+  height:2247px;
+}
+.section-3 .section-title{
+  position:absolute;
+  left:0;
+  top:0;
+  max-width:5185px;
+}
+.section-3 .section-body{
+  position:absolute;
+  left:0;
+  top: 600px;
+  width:5185px;
+}
+
+/* Group 29356: x:-6340,y:-25235,width:2403,height:917 -> normalize left=5641, top=9617 */
+.cta-group.cta-3{
+  position:absolute;
+  left:5641px;
+  top:9617px;
+  width:2403px;
+  height:917px;
+}
+
+/* Decorative images (kept off-canvas by default unless used) */
+.decor-images{
+  position:absolute;
+  pointer-events:none;
+}
+.decor{
+  position:absolute;
+  width:0;
+  height:0;
+  opacity:0;
+}
